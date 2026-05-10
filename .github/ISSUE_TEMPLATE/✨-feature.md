@@ -1,3 +1,12 @@
+---
+name: ✨ feature
+about: 기능 개발 이슈 템플릿
+title: "✨ feat: "
+labels: "✨ Feature"
+assignees: ''
+
+---
+
 # 💡 Issue : 이슈 요약
 
 <!-- 구현할 내용에 대해 요약해주세요. -->
