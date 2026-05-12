@@ -26,7 +26,6 @@ public enum JobCategory {
     this.label = label;
   }
 
-  // 응답 직렬화 시 label(한글)로 내려감
   @JsonValue
   public String getLabel() {
     return label;
