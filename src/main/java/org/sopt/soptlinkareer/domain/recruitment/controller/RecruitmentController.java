@@ -90,7 +90,7 @@ public class RecruitmentController {
               name = "recruitmentId",
               description = "조회할 채용공고 ID",
               required = true,
-              example = "1",
+              example = "18",
               in = ParameterIn.PATH)
           @PathVariable
           Long recruitmentId) {
