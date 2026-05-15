@@ -7,22 +7,22 @@ import org.sopt.soptlinkareer.domain.recruitment.dto.enums.EmploymentType;
 import org.sopt.soptlinkareer.domain.recruitment.dto.enums.JobCategory;
 import org.sopt.soptlinkareer.domain.recruitment.dto.enums.Region;
 import org.sopt.soptlinkareer.domain.recruitment.dto.request.RecruitmentSearchCondition;
+import org.sopt.soptlinkareer.domain.recruitment.dto.response.RecruitmentDetailResponse;
 import org.sopt.soptlinkareer.domain.recruitment.dto.response.RecruitmentResponse;
 import org.sopt.soptlinkareer.domain.recruitment.exception.RecruitmentSuccessCode;
 import org.sopt.soptlinkareer.domain.recruitment.service.RecruitmentService;
 import org.sopt.soptlinkareer.global.response.BaseResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
@@ -74,5 +74,28 @@ public class RecruitmentController {
         BaseResponse.onSuccess(
             RecruitmentSuccessCode.GET_RECRUITMENTS_SUCCESS,
             recruitmentService.getRecruitments(condition)));
+  }
+
+  @Operation(
+      summary = "채용공고 상세 조회",
+      description = "채용공고 ID로 공고의 상세 정보를 조회합니다. 담당업무, 자격요건, 우대사항은 리스트 형태로 반환됩니다.")
+  @ApiResponses(
+      value = {
+        @ApiResponse(responseCode = "200", description = "채용공고 상세 조회 성공"),
+        @ApiResponse(responseCode = "404", description = "해당 공고를 찾을 수 없습니다.")
+      })
+  @GetMapping("/{recruitmentId}")
+  public ResponseEntity<BaseResponse<RecruitmentDetailResponse>> getRecruitmentDetail(
+      @Parameter(
+              name = "recruitmentId",
+              description = "조회할 채용공고 ID",
+              required = true,
+              example = "1",
+              in = ParameterIn.PATH)
+          @PathVariable
+          Long recruitmentId) {
+    RecruitmentDetailResponse response = recruitmentService.getRecruitmentDetail(recruitmentId);
+    return ResponseEntity.ok(
+        BaseResponse.onSuccess(RecruitmentSuccessCode.GET_RECRUITMENT_DETAIL, response));
   }
 }
