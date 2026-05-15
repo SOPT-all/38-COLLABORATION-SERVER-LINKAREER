@@ -6,7 +6,7 @@ spring:
     name: sopt-linkareer
 
   datasource:
-    url: jdbc:mysql://{DB_URL}:3306/sopt_linkareer
+    url: jdbc:mysql://${DB_URL}:3306/sopt_linkareer
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
