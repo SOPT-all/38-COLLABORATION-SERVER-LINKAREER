@@ -4,7 +4,7 @@ import org.sopt.soptlinkareer.global.exception.code.BaseSuccessCode;
 import org.springframework.http.HttpStatus;
 
 public enum PassReviewSuccessCode implements BaseSuccessCode {
-  GET_REVIEWS_SUCCESS(HttpStatus.OK, "REVIEW2001", "합격 후기 전체 조회에 성공하였습니다.");
+  GET_PASS_REVIEWS_SUCCESS(HttpStatus.OK, "PASS_REVIEW2001", "합격 후기 전체 조회에 성공하였습니다.");
 
   private final HttpStatus httpStatus;
   private final String code;

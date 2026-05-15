@@ -31,6 +31,6 @@ public class PassReviewController {
   public ResponseEntity<BaseResponse<List<PassReviewResponse>>> getReviews() {
     List<PassReviewResponse> response = passReviewService.getPassReviews();
     return ResponseEntity.ok(
-        BaseResponse.onSuccess(PassReviewSuccessCode.GET_REVIEWS_SUCCESS, response));
+        BaseResponse.onSuccess(PassReviewSuccessCode.GET_PASS_REVIEWS_SUCCESS, response));
   }
 }
