@@ -1,17 +1,16 @@
-package org.sopt.soptlinkareer.domain.recruitment.exception;
+package org.sopt.soptlinkareer.domain.passReview.exception;
 
 import org.sopt.soptlinkareer.global.exception.code.BaseSuccessCode;
 import org.springframework.http.HttpStatus;
 
-public enum RecruitmentSuccessCode implements BaseSuccessCode {
-  GET_RECRUITMENTS_SUCCESS(HttpStatus.OK, "RECRUITMENT2001", "채용공고 목록 조회에 성공했습니다."),
-  GET_RECRUITMENT_DETAIL(HttpStatus.OK, "RECRUITMENT2002", "채용공고 상세 조회 성공");
+public enum PassReviewSuccessCode implements BaseSuccessCode {
+  GET_PASS_REVIEWS_SUCCESS(HttpStatus.OK, "PASS_REVIEW2001", "합격 후기 전체 조회에 성공하였습니다.");
 
   private final HttpStatus httpStatus;
   private final String code;
   private final String message;
 
-  RecruitmentSuccessCode(HttpStatus httpStatus, String code, String message) {
+  PassReviewSuccessCode(HttpStatus httpStatus, String code, String message) {
     this.httpStatus = httpStatus;
     this.code = code;
     this.message = message;
