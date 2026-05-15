@@ -1,6 +1,5 @@
 package org.sopt.soptlinkareer.domain.recruitment.repository;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.sopt.soptlinkareer.domain.recruitment.dto.enums.CompanyType;
@@ -10,7 +9,6 @@ import org.sopt.soptlinkareer.domain.recruitment.dto.enums.Region;
 import org.sopt.soptlinkareer.domain.recruitment.dto.request.RecruitmentSearchCondition;
 import org.sopt.soptlinkareer.domain.recruitment.entity.QRecruitment;
 import org.sopt.soptlinkareer.domain.recruitment.entity.Recruitment;
-import org.sopt.soptlinkareer.domain.recruitment.entity.RecruitmentDeadlineType;
 import org.springframework.stereotype.Repository;
 
 import com.querydsl.core.types.dsl.BooleanExpression;
@@ -27,26 +25,16 @@ public class RecruitmentRepositoryImpl implements RecruitmentRepositoryCustom {
   @Override
   public List<Recruitment> findByCondition(RecruitmentSearchCondition condition) {
     QRecruitment recruitment = QRecruitment.recruitment;
-    LocalDateTime now = LocalDateTime.now();
 
     return queryFactory
         .selectFrom(recruitment)
         .where(
-            notExpired(recruitment, now),
             jobCategoryIn(recruitment, condition.jobCategories()),
             companyTypeIn(recruitment, condition.companyTypes()),
             employmentTypeContains(recruitment, condition.employmentTypes()),
             regionStartsWith(recruitment, condition.regions()))
         .orderBy(recruitment.recruitmentStartDate.desc())
         .fetch();
-  }
-
-  // UNTIL_FILLED이거나 마감일이 현재 시각 이후인 공고만 포함
-  private BooleanExpression notExpired(QRecruitment recruitment, LocalDateTime now) {
-    return recruitment
-        .recruitmentDeadlineType
-        .eq(RecruitmentDeadlineType.UNTIL_FILLED)
-        .or(recruitment.recruitmentEndDate.goe(now));
   }
 
   // 직무: label 정확 일치 IN — null이면 QueryDSL이 조건 무시
