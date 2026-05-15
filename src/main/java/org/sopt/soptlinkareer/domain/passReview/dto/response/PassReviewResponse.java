@@ -2,8 +2,9 @@ package org.sopt.soptlinkareer.domain.passReview.dto.response;
 
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.sopt.soptlinkareer.domain.passReview.entity.PassReview;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 

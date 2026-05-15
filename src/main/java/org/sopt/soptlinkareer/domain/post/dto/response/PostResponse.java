@@ -2,8 +2,9 @@ package org.sopt.soptlinkareer.domain.post.dto.response;
 
 import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import org.sopt.soptlinkareer.domain.post.entity.Post;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
