@@ -51,6 +51,7 @@ public class Recruitment extends BaseTimeEntity {
   @Column(nullable = false)
   private RecruitmentDeadlineType recruitmentDeadlineType;
 
+  @Column(columnDefinition = "TEXT")
   private String imageUrl;
 
   private String location;
