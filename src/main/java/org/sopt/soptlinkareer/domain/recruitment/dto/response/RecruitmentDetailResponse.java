@@ -23,7 +23,7 @@ public record RecruitmentDetailResponse(
         LocalDateTime recruitmentStartDate,
     @Schema(description = "모집 마감일", example = "2026-05-31") @JsonFormat(pattern = "yyyy-MM-dd")
         LocalDateTime recruitmentEndDate,
-    @Schema(description = "마감일 표시값 - FIXED_DATE면 날짜(yyyy-MM-dd), UNTIL_FILLED면 '채용 시 마감'")
+    @Schema(description = "마감일 표시값 - FIXED_DATE면 날짜(MM.dd), UNTIL_FILLED면 '채용 시 마감'")
         String deadlineLabel,
     @Schema(description = "마감 유형") RecruitmentDeadlineType recruitmentDeadlineType,
     @Schema(description = "모집 기간 표시값", example = "04.23 ~ 05.31 / 04.23 ~ 채용 시 마감")
