@@ -32,6 +32,7 @@ jobs:
           envs: DB_URL,DB_USERNAME,DB_PASSWORD
           script: |
             cd /home/ubuntu/38-COLLABORATION-SERVER-LINKAREER
+            git checkout -- .
             git pull origin deploy
             ./gradlew bootJar -x test
             sudo fuser -k 8080/tcp || true
