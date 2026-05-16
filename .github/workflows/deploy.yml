@@ -31,6 +31,7 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd /home/ubuntu/38-COLLABORATION-SERVER-LINKAREER
+            git checkout --
             git pull origin main
             ./gradlew bootJar -x test
             sudo fuser -k 8080/tcp || true
