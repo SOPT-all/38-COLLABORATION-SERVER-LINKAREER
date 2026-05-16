@@ -33,7 +33,7 @@ jobs:
           script: |
             cd /home/ubuntu/38-COLLABORATION-SERVER-LINKAREER
             git checkout -- .
-            git pull origin deploy
+            git pull origin deploy --no-rebase
             ./gradlew bootJar -x test
             sudo fuser -k 8080/tcp || true
             nohup java -Dfile.encoding=UTF-8 \
