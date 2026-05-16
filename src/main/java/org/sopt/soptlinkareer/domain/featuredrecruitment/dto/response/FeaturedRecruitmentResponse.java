@@ -46,6 +46,6 @@ public record FeaturedRecruitmentResponse(
     }
     long days =
         ChronoUnit.DAYS.between(LocalDate.now(), recruitment.getRecruitmentEndDate().toLocalDate());
-    return "D-" + days;
+    return "D" + days;
   }
 }
