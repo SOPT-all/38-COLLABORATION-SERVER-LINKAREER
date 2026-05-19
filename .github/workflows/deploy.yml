@@ -29,10 +29,19 @@ jobs:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_KEY }}
+          envs: DB_URL,DB_USERNAME,DB_PASSWORD
           script: |
             cd /home/ubuntu/38-COLLABORATION-SERVER-LINKAREER
-            git checkout --
-            git pull origin main
+            git checkout -- .
+            git pull origin deploy --no-rebase
             ./gradlew bootJar -x test
             sudo fuser -k 8080/tcp || true
-            nohup java -Dfile.encoding=UTF-8 -jar build/libs/sopt-linkareer-0.0.1-SNAPSHOT.jar > /home/ubuntu/app.log 2>&1 &
+            nohup java -Dfile.encoding=UTF-8 \
+              -DDB_URL=$DB_URL \
+              -DDB_USERNAME=$DB_USERNAME \
+              -DDB_PASSWORD=$DB_PASSWORD \
+              -jar build/libs/sopt-linkareer-0.0.1-SNAPSHOT.jar > /home/ubuntu/app.log 2>&1 &
+        env:
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
