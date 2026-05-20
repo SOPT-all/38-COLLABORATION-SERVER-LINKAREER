@@ -13,7 +13,8 @@ public class CorsConfig implements WebMvcConfigurer {
         .addMapping("/**")
         .allowedOriginPatterns(
             "http://localhost:5173",
-            "http://localhost:5174"
+            "http://localhost:5174",
+            "https://38-collaboration-web-linkareer.vercel.app"
         )
         .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
         .allowedHeaders("*")
